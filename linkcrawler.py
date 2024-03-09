@@ -4,6 +4,11 @@ from bs4 import BeautifulSoup
 
 RESULTS = set()
 
+def CheckURL(url):
+    if not url.split("/")[0] or url.split("/")[0] == '.': return False
+
+    return True
+
 def Parse(url):
     try:
         return requests.get(url)
@@ -32,7 +37,7 @@ if __name__ == "__main__":
                 linkElements = soup.select("a[href]")
                 for elem in linkElements:
                     url = elem["href"]
-                    if url not in newLinks and url not in toScan and url not in RESULTS:
+                    if CheckURL(url) and url not in newLinks and url not in toScan and url not in RESULTS:
                         newLinks += [url]
                         print(url)
                     
