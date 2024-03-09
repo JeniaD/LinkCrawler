@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 RESULTS = set()
 
 def CheckURL(url, topDomain=None):
-    if not url.split('/')[0] or url.split('/')[0] == '.' or '.' not in url or "mailto:" in url or '%' in url or len(url) < 3: return False
+    if not url.split('/')[0] or url.split('/')[0] == '.' or '.' not in url or "mailto:" in url or '%' in url or "javascript:" in url or len(url) < 3: return False
     if topDomain and topDomain not in url: return False
 
     return True
