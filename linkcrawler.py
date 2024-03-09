@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 RESULTS = set()
 
 def CheckURL(url, topDomain=None):
-    if not url.split('/')[0] or url.split('/')[0] == '.' or '.' not in url or "mailto:" in url: return False
+    if not url.split('/')[0] or url.split('/')[0] == '.' or '.' not in url or "mailto:" in url or '%' in url or len(url) < 3: return False
     if topDomain and topDomain not in url: return False
 
     return True
@@ -52,7 +52,7 @@ if __name__ == "__main__":
                             newLinks += [url]
                             print(url)
                         
-                        RESULTS.add(url)
+                            RESULTS.add(url)
                 except AttributeError as e:
                     continue
             
