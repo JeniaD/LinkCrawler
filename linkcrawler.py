@@ -31,7 +31,7 @@ def Parse(url):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=f"Simple link web crawler")
     parser.add_argument("target", help="your target URL")
-    # parser.add_argument("--output", help="output directory path")
+    parser.add_argument("--output", help="output directory path")
     parser.add_argument("--filter", help="domain allowed to crawl (like .com)")
     args = parser.parse_args()
 
@@ -64,3 +64,8 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Keyboard interrupt")
         print(RESULTS)
+
+    if args.output:
+        with open(args.output, 'w') as file:
+            for link in RESULTS:
+                file.write(link + '\n')
